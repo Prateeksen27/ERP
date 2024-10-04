@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>Welcome to ERP</title>
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+  <link href="/css/styles.css" rel="stylesheet" />
+  <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="sb-nav-fixed">
+  <%- include('./partials/FacultyNav.ejs') %>
+    <div id="layoutSidenav_content">
+      <main>
+        <div class="container-fluid px-4">
+          <h1 class="mt-4">Assignment Verification Portal</h1>
+          <ol class="breadcrumb mb-4">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              data-bs-whatever="@mdo">Create New Assignment</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">New Assignment</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="/facultyDashboard/Assignment/create" method="post">
+                      <div class="mb-3">
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Name">Name</label>
+                              <input type="text" class="form-control" name="Name" id="Name" disabled
+                                value="<%= name %>">
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="Section">Section</label>
+                              <select class="form-control" name="section" id="Section">
+                                <option value="">Select</option>
+                                <% sec.forEach(element=> { %>
+                                  <option value="<%= element.section %>">
+                                    <%= element.section %>
+                                  </option>
+                                  <% }) %>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="subject">Subject</label>
+                              <select class="form-control" name="subject" id="">
+                                <option value="">Select</option>
+                                <% sec.forEach(element=> { %>
+                                  <option value="<%= element.subject %>">
+                                    <%= element.subject %>
+                                  </option>
+                                  <% }) %>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+
+                      </div>
+                      <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Assignment Name</label>
+                        <input type="text" class="form-control" name="Assignment" id="Name" value="">
+                      </div>
+                      <div class="mb-3">
+                        <label for="message-text" class="col-form-label">Last Date</label>
+                        <input type="date" class="form-control" name="Last_date" id="Name" value="">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Create Assignment</button>
+                      </div>
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </ol>
+        </div>
+        <table class="table table-hover">
+          <thead>
+              <tr>
+                <th scope="col" class="text-center">Sl.NO</th>
+                <th scope="col" class="text-center">Name</th>
+                <th scope="col" class="text-center">Section</th>
+                <th scope="col" class="text-center">Subject</th>
+                <th scope="col" class="text-center">Last Date</th>
+                <th scope="col" class="text-center">Submissions</th>
+              </tr>
+              <% for( let i = 0; i < assign.length; i++ ) { %>
+                <tr>
+                  <td class="text-center"><%= i+1 %></td>
+                  <td class="text-center"><%= assign[i].assignment_name %></td>
+                  <td class="text-center"><%=  assign[i].section %></td>
+                  <td class="text-center"><%=  assign[i].subject %></td>
+                  <td class="text-center"><%= assign[i].last_date %></td>
+                  <td class="text-center"><button class="btn btn-primary"><a href="/facultyDashboard/Assignment/:<%= assign[i].assignment_id  %>" class="text-decoration-none" style="color: white;">View Responces</a></button></td>
+                </tr>
+              
+              <% } %>
+             
+            </thead>
+            <tbody>
+            </tbody>
+      </table>
+      </main>
+      <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+          <div class="d-flex align-items-center justify-content-between small">
+            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+            <div>
+              <a href="#">Privacy Policy</a>
+              &middot;
+              <a href="#">Terms &amp; Conditions</a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      crossorigin="anonymous"></script>
+    <script src="/js/scripts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+    <script src="assets/demo/chart-area-demo.js"></script>
+    <script src="assets/demo/chart-bar-demo.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+      crossorigin="anonymous"></script>
+    <script src="/js/datatables-simple-demo.js"></script>
+</body>
+
+</html>

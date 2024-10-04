@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Leave Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="layoutSidenav_content" class="container py-3"> 
+        <h1 class="fs-5 mb-4">Assignment Submission</h1>
+        <div id="details" class="row mt-3 mb-4">
+            <div class="col-md-3 mb-3">
+                <label for="roll_no" class="fw-bold">Name Of the Faculty</label>
+                <input type="text" value="<%= assign[0].name %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="roll_no" class="fw-bold">Subject</label>
+                <input type="text" value="<%= assign[0].subject %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="roll_no" class="fw-bold">Last Date</label>
+                <input type="text" value="<%= assign[0].last_date %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="roll_no" class="fw-bold">Section</label>
+                <input type="text" value="<%= assign[0].section %>" class="form-control" disabled>
+            </div>
+        </div>
+        <form action="/studentDashboard/Assignment/submit/:<%= assign[0].assignment_id %>/:<%= assign[0].id %>" method="post" enctype="multipart/form-data">
+        <div id="payment" class="row">
+           <label for="Assignment" class="d-flex">Upload File <p style="color: red;">(PDF format only acepted)</p></label>
+           <input type="file" name="eventImage" id="" class="form-control" accept="PDF">
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button id="submit" type="submit" class="btn btn-primary mt-4 d-flex justify-content-end">Submit</button>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div id="footer" class="py-3 bg-light text-center">
+        <p class="mb-0"><b>Copyright © 2020-2022</b> All rights reserved</p>
+    </div>
+</body>
+</html>

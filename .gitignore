@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+
+# Compiled code
+*.out
+*.o
+*.class
+
+# Python files
+*.pyc
+__pycache__/
+
+# Database files
+*.sqlite3
+*.db
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# VS Code and JetBrains settings
+.vscode/
+.idea/
+
+# Built or generated files
+/dist/
+/build/
+/out/
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.swp
+
+# Ignore package-lock or yarn.lock if you prefer npm over Yarn or vice versa
+package-lock.json
+yarn.lock
+
+# Specific files
+secret_file.txt
+
+# Ignore all .txt files in a specific folder (example)
+some_folder/*.txt

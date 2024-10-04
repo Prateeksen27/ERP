@@ -1,0 +1,125 @@
+        #details{
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            flex: 1;
+            justify-content: space-around;
+        }
+        #details div{
+            display:flex;
+            flex-direction:column;
+            flex: 1;
+            margin: 10px;
+        }
+        #details div input{
+            width: 100%;
+            padding:5px 10px 5px 10px;
+            border-radius: 4px;
+            background: rgba(128, 128, 128, 0.186);
+            color: black;
+            margin-top: 5px;
+            box-shadow: inset 0 0 0 transparent;
+        }
+        #notice {
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left:10px;
+    margin-right:10px;
+}
+
+#notice h3 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+#notice ol li {
+    margin-bottom: 10px;
+}
+#payment{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+#payment div{
+    display: flex;
+}
+#payment div div{
+            display:flex;
+            flex-direction:column;
+            flex: 1;
+            margin: 10px;
+}
+#payment div div  input{
+    width: 100%;
+            padding:5px 10px 5px 10px;
+            border-radius: 4px;
+            background:white;
+            color: black;
+            margin-top: 5px;
+            box-shadow: inset 0 0 0 transparent;
+}
+#payment div div  input:focus{
+    border-color:blue;
+}
+#payment div div select{
+    width: 100%;
+            padding:5px 10px 5px 10px;
+            border-radius: 4px;
+            background: white;
+            color: black;
+            margin-top: 5px;
+            box-shadow: inset 0 0 0 transparent;
+}
+#payment > div:nth-child(2) > div:nth-child(1) > input[type=text],#payment > div:nth-child(2) > div:nth-child(2) > input[type=text],#payment > div:nth-child(2) > div:nth-child(3) > input[type=text]{
+    background: rgba(128, 128, 128, 0.186);
+}
+#payment div div:nth-child(3){
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+#submit{
+    width: 150px;
+    border: 1px solid black;
+    outline: none;
+    height: 30px;
+    background: rgb(7, 242, 242);
+    border-radius: 3px;
+    transition: 0.9s;
+}
+#submit:hover{
+    background: rgba(7, 242, 242, 0.404) ;
+}
+#verify{
+    padding: 15px;
+    padding-bottom: 0px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+#verify div{
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+#verify > div:nth-child(2){
+    display: flex;
+    justify-content: space-between;
+}
+#footer{
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    color: rgba(0, 0, 0, 0.573);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#footer p{
+    margin-left: 10px;
+}

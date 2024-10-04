@@ -1,0 +1,72 @@
+<%- include('partials/header.ejs') %>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Assignments</h1>
+                    </div>
+                    <table class="table table-hover" style="margin-top: 20px;">
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="text-center">Sl.No</th>
+                                <th scope="col" class="text-center">Name</th>
+                                <th scope="col" class="text-center">Subject</th>
+                                <th scope="col" class="text-center">Faculty</th>
+                                <th scope="col" class="text-center">Last Date</th>
+                                <th scope="col" class="text-center">Submit</th>
+                            </tr>
+                            <% for (let i = 0; i < assignments.length; i++) { %>
+                                <tr>
+                                    <td class="text-center"><%= i + 1 %></td>
+                                    <td class="text-center"><%= assignments[i].assignment_name %></td>
+                                    <td class="text-center"><%= assignments[i].subject %></td>
+                                    <td class="text-center"><%= assignments[i].name %></td>
+                                    <td class="text-center"><%= assignments[i].last_date %></td>
+                                    <td class="text-center"><button class="btn btn-primary"><a href="/submit/:<%= assignments[i].assignment_id %>" class="text-decoration-none" style=" color: white;">Submit Assignment</a></button></td>
+                                </tr>
+                            <% } %>
+                            
+                        </tbody>
+                    </table>
+                    <h3 class="mt-4" style="margin-left: 40px;">Assignment Results</h3>
+                    <table class="table table-hover" style="margin-top: 20px;">
+                        <tbody>
+                            <tr>
+                                <th scope="col" class="text-center">Sl.No</th>
+                                <th scope="col" class="text-center">Assignment Name</th>
+                                <th scope="col" class="text-center">Grade</th>
+                                <th scope="col" class="text-center">Faculty Review</th>
+                            </tr>
+                            <% for( let i = 0; i < review.length; i++ ) { %>
+                            <tr>
+                                <td class="text-center"><%= i+1 %></td>
+                                <td class="text-center"><%= review[i].assignment_name %></td>
+                                <td class="text-center"><%= review[i].grade %></td>
+                                <td class="text-center"><%= review[i].review %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+    </body>
+</html>

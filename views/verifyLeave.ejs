@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Welcome to ERP</title>
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+        <link href="/css/styles.css" rel="stylesheet" />
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        <%- include('./partials/FacultyNav.ejs') %>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container-fluid px-4">
+                        <h1 class="mt-4">Leave ManageMent Portal</h1>
+                    </div>
+                    <% if (locals.leave.length>0) { %>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                  <th scope="col">Sl.NO</th>
+                                  <th scope="col">Name</th>
+                                  <th scope="col">Section</th>
+                                  <th scope="col">Reason</th>
+                                  <th scope="col">From</th>
+                                  <th scope="col">To</th>
+                                  <th scope="col">Status</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                    <% for( let i = 0; i < leave.length; i++ ) { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= leave[i].student_name %></td>
+                                            <td><%= leave[i].section %></td>
+                                            <td> <%= leave[i].reason %> </td>
+                                            <td> <%= leave[i].start_date %> </td>
+                                            <td> <%= leave[i].end_date %> </td>
+                                            <% if (leave[i].status=='pending') { %>
+                                                <td>
+                                                    <button class="btn btn-success"><a href="/approve/<%= leave[i].leave_id %>" class="text-decoration-none" style="color: white;">Approve</a></button>
+                                                    <button class="btn btn-danger"><a href="/reject/<%= leave[i].leave_id %>" class="text-decoration-none" style="color: white;">Reject</a></button>
+                                                </td>
+                                           <% } else if (leave[i].status=='Approved') { %>
+                                            <td style='color:green'> Approved </td>
+                                          <% } else {%>
+                                            <td style="color: red;">Rejected</td>
+                                            
+                                            <% } %>
+                                            
+                                        </tr>
+                                    <% } %>
+                                  
+                              </tbody>
+                        </table>
+                        <% } else { %>
+                            <div class="container mt-5">
+                                <div class="row">
+                                  <div class="col-md-6 offset-md-3">
+                                    <p class="m-auto text-center">No data found</p>
+                                  </div>
+                                </div>
+                              </div>
+                          <% } %> 
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+        <script src="assets/demo/chart-area-demo.js"></script>
+        <script src="assets/demo/chart-bar-demo.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+        <script src="/js/datatables-simple-demo.js"></script>
+    </body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Welcome to ERP</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<%- include('./partials/FacultyNav.ejs') %>
+<div id="layoutSidenav_content">
+    <main>
+        <form id="attendanceForm" action="/submitAttendance" method="post">
+             <div id="details" class="row mt-3 mb-1 d-flex justify-content-around" style="margin-left: 2rem;margin-right: 2rem;">
+            <div class="col-md-3 mb-3">
+                <input type="text" value="<%= user.name %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" value="<%= subject %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" value="<%= section %>" class="form-control" disabled>
+            </div>
+            <div class="col-md-3 mb-3">
+                <input type="text" value="<%= semester %>" class="form-control" disabled>
+            </div>
+        </div>
+        <div id="details" class="row mb-4 d-flex justify-content-between" style="margin-left: 2rem;margin-right: 2rem;">
+             <div class="col-md-2 mb-2">
+                <label for="date" class="fw-bold">Date</label>
+                <input type="date" name="date" class="form-control" required>
+            </div>
+             <div class="col-md-2 mb-2">
+                <label for="from_time" class="fw-bold">From</label>
+                <input type="time" name="from_time" class="form-control" required>
+            </div>
+             <div class="col-md-2 mb-2">
+                <label for="to_time" class="fw-bold">to</label>
+                <input type="time" name="to_time" class="form-control" required>
+            </div>
+             <div class="col-md-2 mb-2">
+                <label for="noOfClasses" class="fw-bold">No of Classes</label>
+                <input type="number" name="noOfClasses" min="1" max="5" value="1" class="form-control"  required>
+            </div>
+             <div class="col-md-2 mb-2">
+                <label for="ClassType" class="fw-bold">Class Type</label>
+                <select class="form-select" aria-label="Default select example">
+                        <option selected>Choose</option>
+                        <option value="Own">Own Class</option>
+                        <option value="Adjustment">Adjustment</option>
+                </select>
+            </div>
+            
+        </div>
+        <div  class="col-md-11" style="margin-left: 2rem;">
+            <label for="topic taught" class="fw-bold">Topic Taught</label>
+            <input type="text" name="topicTaught"  class="form-control">
+        </div>
+        <div>
+           <table class="table table-hover" style="margin-top: 20px;margin-left: 2rem;margin-right: 2rem;border-collapse: collapse;">
+                <tr>
+                    <th scope="col">
+
+                    </th>
+                    <th scope="col">Roll No</th>
+                    <th scope="col">Name</th>
+                </tr>
+                <% for( let i = 0; i < students.length; i++ ) { %>
+                <tr>
+                    <td><input type="checkbox" name="present"   value="<%= students[i].rollno %>" checked>
+                        <input type="hidden" name="Name" value="<%= students[i].rollno %>">
+                    </td>
+                    <td><%= students[i].rollno %></td>
+                    <td><%= students[i].name %></td>
+                </tr>
+                <% } %>
+            </table>
+        </div>
+            <div class="d-flex justify-content-end">
+                <button type="button" id="viewAndSubmit" class="btn btn-primary" style="margin-right: 2rem;">View & Submit</button>
+            </div>
+        </form>
+    </main>
+    <footer class="py-4 bg-light mt-auto">
+        <div class="container-fluid px-4">
+            <div class="d-flex align-items-center justify-content-between small">
+                <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                <div>
+                    <a href="#">Privacy Policy</a>
+                    &middot;
+                    <a href="#">Terms &amp; Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="absentStudentsModal" tabindex="-1" aria-labelledby="absentStudentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="absentStudentsModalLabel">Absent Students</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul id="absentStudentsList" class="list-group">
+                    <!-- Absent students will be populated here -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="submitAttendanceBtn" class="btn btn-primary">Submit Attendance</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+<script src="assets/demo/chart-area-demo.js"></script>
+<script src="assets/demo/chart-bar-demo.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js" crossorigin="anonymous"></script>
+<script src="/js/datatables-simple-demo.js"></script>
+<script>
+    document.getElementById('viewAndSubmit').addEventListener('click', function () {
+        var absentStudents = [];
+        var checkboxes = document.querySelectorAll('input[name=present]:not(:checked)');
+        checkboxes.forEach(function (checkbox) {
+            var studentName = checkbox.parentNode.nextElementSibling.nextElementSibling.textContent;
+            absentStudents.push(studentName);
+        });
+        var absentStudentsList = document.getElementById('absentStudentsList');
+        absentStudentsList.innerHTML = '';
+        absentStudents.forEach(function (student) {
+            var listItem = document.createElement('li');
+            listItem.textContent = student;
+            listItem.classList.add('list-group-item');
+            absentStudentsList.appendChild(listItem);
+        });
+
+        var modal = new bootstrap.Modal(document.getElementById('absentStudentsModal'), {
+            backdrop: 'static',
+            keyboard: false
+        });
+
+        modal.show();
+
+        document.getElementById('submitAttendanceBtn').addEventListener('click', function () {
+            document.getElementById('attendanceForm').submit();
+        });
+    });
+</script>
+</body>
+</html>
